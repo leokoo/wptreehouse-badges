@@ -1,7 +1,7 @@
 <div class="wrap">
 	
 	<div id="icon-options-general" class="icon32"></div>
-	<h2>The Official Treehouse Badges Plugin</h2>
+	<h2>The Official Treehouse Badges Plugin by Leo!</h2>
 	
 	<div id="poststuff">
 	

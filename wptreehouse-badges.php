@@ -56,7 +56,6 @@ function wptreehouse_badges_options_page() {
 
 	require( 'inc/options-page-wrapper.php' );
 
-
 }
 
 
