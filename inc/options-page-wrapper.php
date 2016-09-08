@@ -11,45 +11,48 @@
 			<div id="post-body-content">
 				
 				<div class="meta-box-sortables ui-sortable">
-					
+
+					<?php if( !isset( $wptreehouse_username ) || $wptreehouse_username == '' ): ?>
+
 					<div class="postbox">
 					
 						<h3><span>Let's Get Started!</span></h3>
 						<div class="inside">
 							
-							<form method="post" action="">							
+							<form name="wptreehouse_username_form" method="post" action="">							
+
+							<input type="hidden" name="wptreehouse_form_submitted" value="Y">
 
 							<table class="form-table">
-							<tbody>
-								<tr valign="top">
-									<th scope="row">
-										<label for="treehouse_username">Treehouse username</label>
-									</th>
+								<tr>
 									<td>
-										<input type="text" name="wptreehouse_username" value="">
+										<label for="wptreehouse_username">Treehouse username</label>
 									</td>
-								</tr>
-							</tbody>
+									<td>
+										<input name="wptreehouse_username" id="wptreehouse_username" type="text" value="" class="regular-text" />
+									</td>
+								</tr>								
 							</table>
 
-								<p>
-									<input type="submit" name="Submit" class="button-primary" value="Save" />										
-								</p>
+							<p>
+								<input class="button-primary" type="submit" name="wptreehouse_usename_submit" value="Save" /> 
+							</p>
 
 							</form>
-
 
 						</div> <!-- .inside -->
 					
 					</div> <!-- .postbox -->
-					
+
+					<?php else: ?>
+
 					<div class="postbox">
 					
-						<h3><span>Most Recent Badges</span></h3>							
+						<h3><span>Most Recent Badges</span></h3>
 						<div class="inside">
 							
-							<p>Below are your most 20 most recent badges.</p>
-							
+							<p>Below are your 20 most recent badges</p>
+
 							<ul class="wptreehouse-badges">
 
 								<?php for( $i = 0; $i < 20; $i++ ): ?>
@@ -58,10 +61,10 @@
 										<li>
 											<img width="120px" src="<?php echo $plugin_url . '/images/wp-badge.png'; ?>">								
 										</li>										
-										<li class="wptreehouse-badges-badge-name">
+										<li class="wptreehouse-badge-name">
 											<a href="#">Badge Name</a>
 										</li>
-										<li class="wptreehouse-badges-project-name">
+										<li class="wptreehouse-project-name">
 											<a href="#">Project Name</a>
 										</li>
 									</ul>									
@@ -72,7 +75,9 @@
 
 						</div> <!-- .inside -->
 					
-					</div> <!-- .postbox -->
+					</div> <!-- .postbox -->					
+
+					<?php endif; ?>
 
 				</div> <!-- .meta-box-sortables .ui-sortable -->
 				
@@ -83,6 +88,8 @@
 				
 				<div class="meta-box-sortables">
 					
+					<?php if( isset( $wptreehouse_username ) || $wptreehouse_username != '' ): ?>
+
 					<div class="postbox">
 					
 						<h3><span>Mike the Frog's Profile</span></h3>
@@ -92,17 +99,17 @@
 
 							<ul class="wptreehouse-badges-and-points">							
 
-								<li>Badges: <strong>200</strong></li>
-								<li>Points: <strong>10000</strong></li>
+									<li>Badges: <strong>200</strong></li>
+									<li>Points: <strong>10000</strong></li>
 
 							</ul>
 
-
 						</div> <!-- .inside -->
-						
 						
 					</div> <!-- .postbox -->
 					
+					<?php endif; ?>
+
 				</div> <!-- .meta-box-sortables -->
 				
 			</div> <!-- #postbox-container-1 .postbox-container -->

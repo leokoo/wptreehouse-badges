@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 /*
  *	Plugin Name: Official Treehouse Badges Plugin
  *	Plugin URI: http://wptreehouse.com/wptreehouse-badges-plugin/
@@ -10,19 +11,15 @@
  *
 */
 
-
 /*
  *	Assign global variables
  *
 */
 
-
 $plugin_url = WP_PLUGIN_URL . '/wptreehouse-badges';
 
-
-
 /*
- *	Add a link to our plugin in the admin menu 
+ *	Add a link to our plugin in the admin menu
  *	under 'Settings > Treehouse Badges'
  *
 */
@@ -30,40 +27,47 @@ $plugin_url = WP_PLUGIN_URL . '/wptreehouse-badges';
 function wptreehouse_badges_menu() {
 
 	/*
-	 *	Save the add_options_page function with parameters
-	 *	add_options_page( $page_title, $menu_title, $capability, $menu_slug, $function); 
-	 *	 
+	 * 	Use the add_options_page function
+	 * 	add_options_page( $page_title, $menu_title, $capability, $menu-slug, $function ) 
+	 *
 	*/
 
 	add_options_page(
-		'Treehouse Badges',
+		'Official Treehouse Badges Plugin',
 		'Treehouse Badges',
 		'manage_options',
 		'wptreehouse-badges',
-		'wp_treehouse_badges_options_page'
-	);	
+		'wptreehouse_badges_options_page'
+	);
 
 }
 add_action( 'admin_menu', 'wptreehouse_badges_menu' );
 
 
-/*
- *	Create our main function for our plugin options page
- *
-*/
-
-function wp_treehouse_badges_options_page() {
+function wptreehouse_badges_options_page() {
 
 	if( !current_user_can( 'manage_options' ) ) {
-		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+
+		wp_die( 'You do not have sufficient permissions to access this page.' );
+
 	}
 
-
-	// Pull in global variables
 	global $plugin_url;
 
-	// Require the main markup for the options page
+	if( isset( $_POST['wptreehouse_form_submitted'] ) ) {
+
+		$hidden_field = esc_html( $_POST['wptreehouse_form_submitted'] );
+
+		if( $hidden_field == 'Y' ) {
+
+			$wptreehouse_username = esc_html( $_POST['wptreehouse_username'] );
+			
+		}
+
+	}
+
 	require( 'inc/options-page-wrapper.php' );
+
 
 }
 
@@ -73,5 +77,16 @@ function wptreehouse_badges_styles() {
 
 }
 add_action( 'admin_head', 'wptreehouse_badges_styles' );
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
