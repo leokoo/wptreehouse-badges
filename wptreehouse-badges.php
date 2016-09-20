@@ -17,6 +17,7 @@
 */
 
 $plugin_url = WP_PLUGIN_URL . '/wptreehouse-badges';
+$options = array();
 
 /*
  *	Add a link to our plugin in the admin menu
@@ -48,11 +49,12 @@ function wptreehouse_badges_options_page() {
 
 	if( !current_user_can( 'manage_options' ) ) {
 
-		wp_die( 'You do not have sufficient permissions to access this page.' );
+		wp_die( 'You do not have suggicient permissions to access this page.' );
 
 	}
 
 	global $plugin_url;
+	global $options;
 
 	if( isset( $_POST['wptreehouse_form_submitted'] ) ) {
 
@@ -61,8 +63,21 @@ function wptreehouse_badges_options_page() {
 		if( $hidden_field == 'Y' ) {
 
 			$wptreehouse_username = esc_html( $_POST['wptreehouse_username'] );
-			
+
+			$options['wptreehouse_username']	= $wptreehouse_username;
+			$options['last_updated']			= time();
+
+			update_option( 'wptreehouse_badges', $options );
+
 		}
+
+	}
+
+	$options = get_option( 'wptreehouse_badges' );
+
+	if( $options != '' ) {
+
+		$wptreehouse_username = $options['wptreehouse_username'];
 
 	}
 
