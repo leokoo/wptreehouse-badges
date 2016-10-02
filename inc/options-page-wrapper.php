@@ -59,14 +59,28 @@
 								<li>
 									<ul>
 										<li>
-											<img width="120px" src="<?php echo $plugin_url . '/images/wp-badge.png'; ?>">								
-										</li>										
+											<img width="120px" src="<?php echo $wptreehouse_profile->{'badges'}[$i]->{'icon_url'}; ?>">								
+										</li>	
+
+										<?php if( $wptreehouse_profile->{'badges'}[$i]->{'url'} != $wptreehouse_profile->{'profile_url'} ): ?>
+
 										<li class="wptreehouse-badge-name">
-											<a href="#">Badge Name</a>
+											<a href="<?php echo $wptreehouse_profile->{'badges'}[$i]->{'url'}; ?>">
+												<?php echo $wptreehouse_profile->{'badges'}[$i]->{'name'}; ?>
+											</a>
 										</li>
 										<li class="wptreehouse-project-name">
-											<a href="#">Project Name</a>
+											<a href="<?php echo $wptreehouse_profile->{'badges'}[$i]->{'courses'}[1]->{'url'}; ?>"><?php echo $wptreehouse_profile->{'badges'}[$i]->{'courses'}[1]->{'title'}; ?></a>
 										</li>
+
+										<?php else: ?>
+
+										<li class="wptreehouse-badge-name">
+											<?php echo $wptreehouse_profile->{'badges'}[$i]->{'name'}; ?>
+										</li>
+
+										<?php endif; ?>
+
 									</ul>									
 								</li>								
 								<?php endfor; ?>
@@ -76,6 +90,33 @@
 						</div> <!-- .inside -->
 					
 					</div> <!-- .postbox -->					
+
+					<?php if( $display_json == true ): ?>
+
+					<div class="postbox">
+
+						<h3><span>JSON Feed</span></h3>
+						<div class="inside">
+
+							<p>
+								<?php echo $wptreehouse_profile->{'name'}; ?>
+							</p>
+							<p>
+								<?php echo $wptreehouse_profile->{'profile_url'}; ?>
+							</p>
+							<p>
+								<?php echo $wptreehouse_profile->{'badges'}[1]->{'courses'}[1]->{'title'}; ?>
+							</p>
+
+							<pre><code>
+								<?php var_dump( $wptreehouse_profile ); ?>
+							</pre></code>
+
+						</div>
+
+					</div>
+
+					<?php endif; ?>
 
 					<?php endif; ?>
 
@@ -92,15 +133,15 @@
 
 					<div class="postbox">
 					
-						<h3><span>Mike the Frog's Profile</span></h3>
+						<h3><span><?php echo $wptreehouse_profile->{'name'}; ?>'s Profile</span></h3>
 						<div class="inside">
 							
-							<p><img width="100%" class="wptreehouse-gravatar" src="<?php echo $plugin_url . '/images/mike-the-frog.png'; ?>" alt="Mike the Frog Gravatar"></p>
+							<p><img width="100%" class="wptreehouse-gravatar" src="<?php echo $wptreehouse_profile->{'gravatar_url'}; ?>"></p>
 
 							<ul class="wptreehouse-badges-and-points">							
 
-									<li>Badges: <strong>200</strong></li>
-									<li>Points: <strong>10000</strong></li>
+									<li>Badges: <strong><?php echo count( $wptreehouse_profile->{'badges'} ); ?></strong></li>
+									<li>Points: <strong><?php echo $wptreehouse_profile->{'points'}->{'total'}; ?></strong></li>
 
 							</ul>
 

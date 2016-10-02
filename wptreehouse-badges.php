@@ -18,6 +18,7 @@
 
 $plugin_url = WP_PLUGIN_URL . '/wptreehouse-badges';
 $options = array();
+$display_json = false;
 
 /*
  *	Add a link to our plugin in the admin menu
@@ -55,6 +56,7 @@ function wptreehouse_badges_options_page() {
 
 	global $plugin_url;
 	global $options;
+	global $display_json;
 
 	if( isset( $_POST['wptreehouse_form_submitted'] ) ) {
 
