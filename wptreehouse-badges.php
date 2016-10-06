@@ -109,6 +109,8 @@ class Wptreehouse_Badges_Widget extends WP_Widget {
 
 		extract( $args );
 		$title = apply_filters( 'widget_title' , $instance['title'] );
+		$num_badges = $instance['num_badges'];
+		$display_tooltip = $instance['display_tooltip'];
 
 		$options = get_option( 'wptreehouse_badges' );
 		$wptreehouse_profile = $options['wptreehouse_profile'];
@@ -122,6 +124,8 @@ class Wptreehouse_Badges_Widget extends WP_Widget {
 		
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['num_badges'] = strip_tags($new_instance['num_badges']);
+		$instance['display_tooltip'] = strip_tags($new_instance['display_tooltip']);
 		
 		return $instance;
 	}
@@ -130,6 +134,11 @@ class Wptreehouse_Badges_Widget extends WP_Widget {
 		// Output admin widget options form
 
 		$title = esc_attr($instance['title']);
+		$num_badges = esc_attr($instance['num_badges']);
+		$display_tooltip = esc_attr($instance['display_tooltip']);
+
+		$options = get_option( 'wptreehouse_badges' );
+		$wptreehouse_profile = $options['wptreehouse_profile'];
 
 		require( 'inc/widget-fields.php' );
 
